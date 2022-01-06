@@ -7,7 +7,7 @@ Installs `Java OpenJDK Version 1.8.0_292`, `Scala 2.11.6`, `Python 2.7.12`, `Apa
 
 #### Prerequisite
 
-Install Vagrant, Vagrant Manager and VirtualBox on your local machine.
+Install [Vagrant](https://www.vagrantup.com/), [Vagrant Manager](https://www.vagrantmanager.com/) and [VirtualBox](https://www.virtualbox.org/) on your local machine.
 
 ```sh
 ## macOS

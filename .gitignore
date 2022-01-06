@@ -1,0 +1,7 @@
+*.log
+
+push.sh
+
+\.vagrant/
+
+metastore_db/

@@ -5,6 +5,16 @@ Vagrant running Ubuntu 16.04 LTS (Xenial Xerus) Operating System (OS) for machin
 Installs `Java OpenJDK Version 1.8.0_292`, `Scala 2.11.6`, `Python 2.7.12`, `Apache Hadoop 3.3.1`, `Apache Mahout 0.13.0` and `Apache Spark 3.2.0`.
 
 
+#### Prerequisite
+
+Install Vagrant, Vagrant Manager and VirtualBox on your local machine.
+
+```sh
+## macOS
+brew install --cask vagrant vagrant-manager virtualbox
+```
+
+
 #### Fire Up
 
 ```sh

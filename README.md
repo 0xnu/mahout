@@ -47,4 +47,4 @@ This project is licensed under the [WTFPL License](LICENSE) - see the file for d
 
 ## Copyright
 
-(c) 2021 [Finbarrs Oketunji](https://finbarrs.eu).
+(c) 2022 [Finbarrs Oketunji](https://finbarrs.eu).

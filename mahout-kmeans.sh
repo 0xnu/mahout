@@ -1,6 +1,5 @@
 #!/bin/bash
 
-K=4
 set -ex
 
 # Raw Data Directory
@@ -46,6 +45,16 @@ mahout seq2sparse \
     -o $hdfsrepo/data_vectors \
     -lnorm -nv -wt tfidf
 
+### Tips for constructing the K-Means Model
+#	-i	input files directory
+#	-c	centroids directory
+#	-o	output directory
+#	-k	number of clusters
+#	-ow	overwrite 
+#	-x	number of iterations
+#	-dm	distance measurement
+#	-cl clustering
+
 # echo ==================================
 # echo == CREATING TWO K-MEANS CLUSTER ==
 # echo ==================================
@@ -56,29 +65,19 @@ mahout kmeans \
     -dm org.apache.mahout.common.distance.CosineDistanceMeasure  \
     - -clustering  -cl  -cd  0.1  -x  10  -k  2  -ow
 
-# echo =====================
-# echo == PRINTING OUTPUT ==
-# echo =====================
-# mahout clusterdump \
-#     -i  $hdfsrepo/data_clusters/clusters-0 \
-#     -o  $finalresult \
-#     -d  $hdfsrepo/data_vectors/dictionary.file-0 \
-#     -b  100 \
-#     -p  $hdfsrepo/data_clusters/clusteredPoints \
-#     -dt  sequencefile   -n  20
-
-# cat $finalresult
-
 # echo ===============================================
 # echo == PRINTING, WRITING AND INTERPRETING RESULT ==
 # echo ===============================================
 mahout clusterdump \
-    -i $hdfsrepo/data_vectors/clusters-4-final \
+    -i $hdfsrepo/data_clusters/clusters-4-final \
     -o $finalresult \
-    -p $hdfsrepo/data_vectors/clusteredPoints \
-    -d $hdfsrepo/data_vectors/dictionary.file-0 \
+    -p $hdfsrepo/data_clusters/clusteredPoints \
+    -d $hdfsrepo/data_vectors/dictionary.file-* \
     -dt sequencefile -n 20 -b 100
 
+# echo ============================
+# echo == VISUALIZE THE CLUSTERS ==
+# echo ============================
 cat $finalresult
 
 exit 0

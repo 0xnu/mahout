@@ -46,13 +46,13 @@ mahout seq2sparse \
     -lnorm -nv -wt tfidf
 
 ### Tips for constructing the K-Means Model
-#	-i	input files directory
-#	-c	centroids directory
-#	-o	output directory
-#	-k	number of clusters
-#	-ow	overwrite 
-#	-x	number of iterations
-#	-dm	distance measurement
+#	-i  input files directory
+#	-c  centroids directory
+#	-o  output directory
+#	-k  number of clusters
+#	-ow overwrite 
+#	-x  number of iterations
+#	-dm distance measurement
 #	-cl clustering
 
 # echo ==================================
@@ -79,5 +79,31 @@ mahout clusterdump \
 # echo == VISUALIZE THE CLUSTERS ==
 # echo ============================
 cat $finalresult
+
+# echo ==============================
+# echo == FUZZY K-MEANS CLUSTERING ==
+# echo ==============================
+
+# kmeanseed=$hdfsrepo/data_kmeansSeed
+# clusters=$hdfsrepo/data_clusters
+# finalcluster=$clusters/clusters-*-final
+# distmetric=org.apache.mahout.common.distance.SquaredEuclideanDistanceMeasure
+# tfidfvectors=$hdfsrepo/data_vectors/tfidf_vectors
+# dict=$hdfsrepo/data_vectors/dictionary.file-*
+# fkmeans=$hdfsrepo/data-fkmeans-dump
+
+# mahout fkmeans \
+#     -cd 1.0 -k 21 -m 2 -ow -x 10 \
+#     -dm $distmetric \
+#     -i $tfidfvectors \
+#     -c $kmeanseed \
+#     -o $clusters
+
+# mahout clusterdump \
+#     -b 10 -n 10 \
+#     -dt sequencefile \
+#     -d $dict \
+#     -i $finalcluster \
+#     -o $fkmeans
 
 exit 0
